@@ -30,6 +30,7 @@ function CodeEditor(props: any) {
           formatOnType: true,
           minimap: { enabled: false },
           wordWrap: "on",
+          scrollBeyondLastLine: false,
         }}
         onMount={(editor, monaco) => {
           setTimeout(function () {
