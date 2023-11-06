@@ -59,7 +59,6 @@ function ForceGraph(props: any) {
                 width={width || 600}
                 height={height || 600}
                 backgroundColor="#1E1E1E"
-                nodeLabel="name"
                 linkColor={(link: any) => link.linkColor || '#F0F0F0'}
                 nodeCanvasObject={nodeCanvasObject}
             />
