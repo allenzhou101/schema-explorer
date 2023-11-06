@@ -13,7 +13,7 @@ export default function Legend() {
     };
 
     return (
-        <div className="absolute z-10 bottom-4 right-3 bg-gray-900 p-2 bg-[#1E1E1E] rounded-md border border-[#1E1E1E] hover:border-[#494949] duration-100">
+        <div className="absolute z-10 bottom-4 right-3 p-2 bg-[#1E1E1E] rounded-md border border-[#1E1E1E] hover:border-[#494949] duration-100">
             <div className="flex flex-col space-y-1">
                 <LegendItem label="Schema" shape="square" color="bg-[#66BB6A]" />
                 <LegendItem label="Namespace" shape="circle" color="bg-[#0085FF]" />
