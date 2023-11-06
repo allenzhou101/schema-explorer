@@ -24,7 +24,7 @@ export default function Home() {
           </div>
           <div className="w-full md:w-1/2 p-4">
             <h2 className="text-md text-gray-500 dark:text-gray-300 mb-4 font-medium">Preview</h2>
-            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[600px">
+            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[600px]">
               <ForceGraph
                 nodes={nodes}
               />
@@ -41,20 +41,53 @@ const nodes = {
   "nodes": [ 
       { 
         "id": "id1",
-        "name": "name1",
-        "val": 1 
+        "name": "Project",
+        "val": 1,
+        "type": "schema"
       },
       { 
         "id": "id2",
-        "name": "name2",
-        "val": 10 
+        "name": "Doc",
+        "val": 10,
+        "type": "namespace"
       },
+      { 
+        "id": "id3",
+        "name": "Viewer",
+        "val": 15,
+        "type": "entity"
+      },
+      { 
+        "id": "id4",
+        "name": "Editor",
+        "val": 15,
+        "type": "entity"
+      },
+      { 
+        "id": "id5",
+        "name": "Owner",
+        "val": 15,
+        "type": "entity"
+      },
+
   ],
   "links": [
       {
           "source": "id1",
           "target": "id2"
       },
+      {
+          "source": "id2",
+          "target": "id3"
+      },
+      {
+        "source": "id2",
+        "target": "id4"
+    },
+    {
+      "source": "id2",
+      "target": "id5"
+  },
   ]
 }
 
