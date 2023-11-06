@@ -4,7 +4,7 @@ import ForceGraph from "./_components/forceGraph";
 export default function Home() {
   return (
     <main
-      className="flex min-h-screen flex-col items-center justify-center bg-[#121212] px-8 lg:px-24 py-8"
+      className="flex min-h-screen flex-col items-center bg-[#121212] px-8 lg:px-24 py-8"
     >
       <div className="max-w-screen-2xl w-full">
         <div
