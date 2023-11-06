@@ -1,27 +1,26 @@
-"use client"
+'use client'
 
-import { useEffect, useRef } from 'react';
-import { ForceGraph2D } from 'react-force-graph';
-import { useResizeDetector, withResizeDetector } from 'react-resize-detector';
+
+import dynamic from 'next/dynamic';
+import { useResizeDetector } from 'react-resize-detector';
+
+const ForceGraph2D = dynamic(() => import('react-force-graph').then((mod) => mod.ForceGraph2D), {
+    ssr: false, // This line is important. It tells Next.js to only import this component on the client side.
+  });  
 
 function ForceGraph(props: any) {
     const { width, height, ref } = useResizeDetector();
-    const forceRef = useRef<any>(null);
 
-    useEffect(() => {
-        if (forceRef.current !== null) {
-            forceRef.current.d3Force("charge").strength(-200);
-        }
-    });
     return (
-        <div ref={ref}>
+        <div
+         ref={ref}
+         >
             <ForceGraph2D
                graphData={props.nodes}
-               width={width}
-               height={height}
+               width={width || 600}
+               height={height || 600}
                backgroundColor="aliceblue"
                nodeLabel="id"
-               ref={forceRef}
             />
         </div>
     )

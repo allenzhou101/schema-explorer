@@ -9,7 +9,7 @@ export default function Home() {
       <div
         className="p-4"
       >
-        <h1 className="text-gray-100 text-xl font-semibold">Descope Explorer</h1>
+        <h1 className="text-gray-100 text-xl font-semibold">ReBAC Explorer</h1>
         <h2 className="text-gray-400 text-sm">Edit, preview, and save your Descope ReBAC Schema.</h2>
       </div>
       <div className="flex flex-col md:flex-row">
@@ -33,8 +33,6 @@ export default function Home() {
     </main>
   )
 }
-
-
 
 
 const nodes = {
