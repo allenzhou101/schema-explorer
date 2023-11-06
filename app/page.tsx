@@ -16,7 +16,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 p-4">
             <h2 className="text-md text-gray-500 dark:text-gray-300 mb-4 font-medium">Schema</h2>
-            <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-[#494949] overflow-hidden">
+            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden">
               <CodeEditor
                 initialData={initialEditorData}
               />
@@ -24,7 +24,7 @@ export default function Home() {
           </div>
           <div className="w-full md:w-1/2 p-4">
             <h2 className="text-md text-gray-500 dark:text-gray-300 mb-4 font-medium">Preview</h2>
-            <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-[#494949] overflow-hidden" style={{height: '600px'}}>
+            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[600px">
               <ForceGraph
                 nodes={nodes}
               />

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Editor from "@monaco-editor/react";
+import CustomLoadingIndicator from "./customLoadingIndicator";
 
 function CodeEditor(props: any) {
   const initialStates = {
@@ -22,7 +23,7 @@ function CodeEditor(props: any) {
         defaultValue={state}
         onChange={handleEditorChange}
         theme="vs-dark"
-        loading={"..."}
+        loading={<CustomLoadingIndicator/>}
         options={{
           cursorStyle: "line",
           formatOnPaste: true,
