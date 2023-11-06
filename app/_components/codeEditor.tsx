@@ -41,6 +41,7 @@ function CodeEditor(props: any) {
           cursorStyle: "line",
           formatOnPaste: true,
           formatOnType: true,
+          minimap: { enabled: false },
         //   wordWrap: true
           // autoIndent: "full"
         }}
