@@ -1,23 +1,19 @@
-'use client'
-
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import Editor from "@monaco-editor/react";
 import CustomLoadingIndicator from "./customLoadingIndicator";
 
 interface CodeEditorProps {
-  initialData: string | undefined;
+  editorContent: string | undefined;
+  onChange: (content: string) => void;
 }
 
 function CodeEditor(props: CodeEditorProps) {
-  const { initialData } = props;
+  const { editorContent, onChange } = props;
 
-  const initialStates = {
-    codeText: initialData
-  };
-
-  const [state, setState] = useState(initialStates.codeText);
-  const handleEditorChange = (value: any, event: any) => {
-    setState(value);
+  const handleEditorChange = (value: string | undefined, event: any) => {
+    if (value !== undefined) {
+      onChange(value);
+    }
   };
 
   return (
@@ -26,10 +22,10 @@ function CodeEditor(props: CodeEditorProps) {
         height="600px"
         width="100%"
         defaultLanguage="yaml"
-        defaultValue={state}
+        defaultValue={editorContent}
         onChange={handleEditorChange}
         theme="vs-dark"
-        loading={<CustomLoadingIndicator/>}
+        loading={<CustomLoadingIndicator />}
         options={{
           cursorStyle: "line",
           formatOnPaste: true,
@@ -37,11 +33,6 @@ function CodeEditor(props: CodeEditorProps) {
           minimap: { enabled: false },
           wordWrap: "on",
           scrollBeyondLastLine: false,
-        }}
-        onMount={(editor, monaco) => {
-          setTimeout(function () {
-            // editor.getAction("editor.action.formatDocument").run();
-          }, 300);
         }}
       />
     </>

@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import CustomLoadingIndicator from './customLoadingIndicator';
 import Legend from './legend';
-import { parseYamlToNodes } from '@/services/util';
+import { parseYamlToNodes } from '@/services/yamlParsing';
 import { Link, Node } from '@/util/types';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph').then((mod) => mod.ForceGraph2D), {
@@ -69,6 +69,11 @@ function ForceGraph(props: ForceGraphProps) {
         ctx.fillText(label, node.x, node.y + fontSize + 5); // Position text below the shape
     };
 
+    if (nodes === undefined || (nodes.nodes.length === 0)) return (
+        <div className="flex h-[600px] items-center justify-center">
+            <p className="text-gray-500 text-xs">Your schema doesn&apos;t have any nodes.</p>
+        </div>
+    )
 
     return (
         <div
