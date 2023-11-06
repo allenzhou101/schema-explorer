@@ -4,29 +4,31 @@ import ForceGraph from "./_components/forceGraph";
 export default function Home() {
   return (
     <main
-       className="flex min-h-screen flex-col bg-gray-100 dark:bg-gray-900"
+       className="flex min-h-screen flex-col bg-[#121212] px-8 lg:px-24 py-8"
      >
-      <div
-        className="p-4"
-      >
-        <h1 className="text-gray-100 text-xl font-semibold">ReBAC Explorer</h1>
-        <h2 className="text-gray-400 text-sm">Edit, preview, and save your Descope ReBAC Schema.</h2>
-      </div>
-      <div className="flex flex-col md:flex-row">
-        <div className="w-full md:w-1/2 p-4">
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Code Editor</h2>
-          <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-gray-300 dark:border-gray-700 overflow-hidden">
-            <CodeEditor
-              initialData={initialEditorData}
-            />
-          </div>
+      <div className="max-w-screen-2xl">
+        <div
+          className="p-4"
+        >
+          <h1 className="text-gray-100 text-3xl font-bold">Schema Explorer</h1>
+          <h2 className="text-gray-400 text-xs">Edit, preview, and save your Descope ReBAC Schema.</h2>
         </div>
-        <div className="w-full md:w-1/2 p-4">
-          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Preview</h2>
-          <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-gray-300 dark:border-gray-700 overflow-hidden" style={{height: "600px"}}>
-            <ForceGraph
-              nodes={nodes}
-            />
+        <div className="flex flex-col md:flex-row">
+          <div className="w-full md:w-1/2 p-4">
+            <h2 className="text-md text-gray-500 dark:text-gray-300 mb-4">Schema</h2>
+            <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-[#494949] overflow-hidden">
+              <CodeEditor
+                initialData={initialEditorData}
+              />
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 p-4">
+            <h2 className="text-md text-gray-500 dark:text-gray-300 mb-4">Preview</h2>
+            <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-[#494949] overflow-hidden" style={{height: '600px'}}>
+              <ForceGraph
+                nodes={nodes}
+              />
+            </div>
           </div>
         </div>
       </div>
