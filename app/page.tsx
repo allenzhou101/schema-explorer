@@ -47,16 +47,6 @@ export default function Home() {
     }
   }
 
-  // const handleReset = () => {
-  //   console.log('Resetting editor content to default schema', originalSchemaData)
-  //   try {
-  //     setSchemaData(originalSchemaData);
-  //     setEditorContent(originalSchemaData);
-  //   } catch (e) {
-  //     console.error('Error parsing YAML data:', e);
-  //   }
-  // }
-
   return (
     <main
       className="flex min-h-screen flex-col items-center bg-[#121212] px-8 lg:px-24 py-8"
@@ -72,8 +62,8 @@ export default function Home() {
           <div className="w-full md:w-1/2 p-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md text-gray-500 dark:text-gray-300 font-medium">Schema</h2>
-              <div className="space-x-2">
-                {/* <VariantButton onClick={handleReset}>Reset</VariantButton> */}
+              <div className="space-x-2 flex flex-row items-center">
+                {/* {!isYamlValid && <p className="text-gray-400 text-[10px] italic">*You have YAML formatting errors. Fix them to save.*</p>} */}
                 <PrimaryButton onClick={handleSave} disabled={!isYamlValid}>Save</PrimaryButton>
               </div>
             </div>
