@@ -1,15 +1,21 @@
 'use client'
 
-import React from "react";
+import React, { useState } from "react";
 import Editor from "@monaco-editor/react";
 import CustomLoadingIndicator from "./customLoadingIndicator";
 
-function CodeEditor(props: any) {
+interface CodeEditorProps {
+  initialData: string | undefined;
+}
+
+function CodeEditor(props: CodeEditorProps) {
+  const { initialData } = props;
+
   const initialStates = {
-    codeText: props.initialData
+    codeText: initialData
   };
 
-  const [state, setState] = React.useState(initialStates.codeText);
+  const [state, setState] = useState(initialStates.codeText);
   const handleEditorChange = (value: any, event: any) => {
     setState(value);
   };

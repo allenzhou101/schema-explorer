@@ -1,18 +1,40 @@
 'use client'
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
 import CustomLoadingIndicator from './customLoadingIndicator';
 import Legend from './legend';
+import { parseYamlToNodes } from '@/services/util';
+import { Link, Node } from '@/util/types';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph').then((mod) => mod.ForceGraph2D), {
     ssr: false, 
     loading: () => <CustomLoadingIndicator/>
   });  
 
-function ForceGraph(props: any) {
+interface ForceGraphProps {
+    nodes: any;
+    schema: string | undefined;
+}
+
+function ForceGraph(props: ForceGraphProps) {
+
+    const { schema } = props;
+
     const { width, height, ref } = useResizeDetector();
+
+    const [nodes, setNodes] = useState<{
+        nodes: Node[];
+        links: Link[];
+    } | undefined>(undefined);
+
+    useEffect(() => {
+        if (schema !== undefined) {
+            const parsedNodes = parseYamlToNodes(schema);
+            setNodes(parsedNodes);
+        }
+    }, [schema]);
 
     const nodeCanvasObject = (node: any, ctx: CanvasRenderingContext2D, globalScale: number) => {
         const label = node.name;
@@ -48,6 +70,7 @@ function ForceGraph(props: any) {
         ctx.fillText(label, node.x, node.y + fontSize + 5); // Position text below the shape
     };
 
+
     return (
         <div
          ref={ref}         
@@ -55,7 +78,7 @@ function ForceGraph(props: any) {
         >
             <Legend />
             <ForceGraph2D
-                graphData={props.nodes}
+                graphData={nodes}
                 width={width || 600}
                 height={height || 600}
                 backgroundColor="#1E1E1E"
