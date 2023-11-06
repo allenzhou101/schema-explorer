@@ -24,9 +24,9 @@ export default function Home() {
         <div className="w-full md:w-1/2 p-4">
           <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Preview</h2>
           <div className="w-full bg-white dark:bg-gray-800 rounded-md border border-gray-300 dark:border-gray-700 overflow-hidden" style={{height: "600px"}}>
-            {/* <ForceGraph
+            <ForceGraph
               nodes={nodes}
-            /> */}
+            />
           </div>
         </div>
       </div>
