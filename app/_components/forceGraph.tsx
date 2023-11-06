@@ -14,7 +14,6 @@ const ForceGraph2D = dynamic(() => import('react-force-graph').then((mod) => mod
   });  
 
 interface ForceGraphProps {
-    nodes: any;
     schema: string | undefined;
 }
 
