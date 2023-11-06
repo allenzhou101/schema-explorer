@@ -1,14 +1,11 @@
 "use client"
 
 import jsYaml from 'js-yaml';
-
 import { useEffect, useState } from "react";
-import CodeEditor from "./_components/codeEditor";
-import ForceGraph from "./_components/forceGraph";
-import { Schema } from '@/util/types';
-import CustomLoadingIndicator from './_components/customLoadingIndicator';
-import PrimaryButton from './_components/primaryButton';
-import VariantButton from './_components/variantButton';
+import CodeEditor from "../components/schema/codeEditor";
+import ForceGraph from "../components/preview/forceGraph";
+import CustomLoadingIndicator from '../components/customLoadingIndicator';
+import PrimaryButton from '../components/buttons/primaryButton';
 
 
 export default function Home() {

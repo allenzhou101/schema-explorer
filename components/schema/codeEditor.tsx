@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import Editor from "@monaco-editor/react";
-import CustomLoadingIndicator from "./customLoadingIndicator";
+import CustomLoadingIndicator from "../customLoadingIndicator";
 
 interface CodeEditorProps {
   editorContent: string | undefined;

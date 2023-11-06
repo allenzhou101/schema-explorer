@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { useResizeDetector } from 'react-resize-detector';
-import CustomLoadingIndicator from './customLoadingIndicator';
+import CustomLoadingIndicator from '../customLoadingIndicator';
 import Legend from './legend';
 import { parseYamlToNodes } from '@/services/yamlParsing';
 import { Link, Node } from '@/util/types';
