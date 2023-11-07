@@ -1,0 +1,81 @@
+name: E-commerce
+
+namespaces:
+  - name: user
+    relationDefinitions:
+      - name: address
+      - name: paymentMethod
+
+  - name: product
+    relationDefinitions:
+      - name: category
+      - name: seller
+      - name: reviews
+        complexDefinition:
+          nType: list
+          children:
+            - nType: child
+              expression:
+                neType: self
+      - name: inventory
+        complexDefinition:
+          nType: child
+          children:
+            - nType: child
+              expression:
+                neType: self
+
+  - name: order
+    relationDefinitions:
+      - name: buyer
+      - name: orderItems
+        complexDefinition:
+          nType: list
+          children:
+            - nType: child
+              expression:
+                neType: relationRight
+                relationDefinition: product
+                relationDefinitionNamespace: product
+      - name: shipment
+      - name: payment
+
+  - name: category
+    relationDefinitions:
+      - name: parent
+      - name: products
+        complexDefinition:
+          nType: list
+          children:
+            - nType: child
+              expression:
+                neType: relationLeft
+                relationDefinition: category
+                relationDefinitionNamespace: product
+
+  - name: review
+    relationDefinitions:
+      - name: product
+      - name: author
+        complexDefinition:
+          nType: child
+          children:
+            - nType: child
+              expression:
+                neType: self
+
+  - name: inventory
+    relationDefinitions:
+      - name: product
+      - name: stockLevel
+
+  - name: shipment
+    relationDefinitions:
+      - name: order
+      - name: address
+
+  - name: payment
+    relationDefinitions:
+      - name: order
+      - name: paymentMethod
+

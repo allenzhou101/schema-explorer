@@ -9,16 +9,14 @@ import PrimaryButton from '../components/buttons/primaryButton';
 
 
 export default function Home() {
-  const [originalSchemaData, setOriginalSchemaData] = useState<string | undefined>(undefined); // Original schema data fetched from API
   const [schemaData, setSchemaData] = useState<string | undefined>(undefined); // Schema being previewed
   const [editorContent, setEditorContent] = useState<string | undefined>(undefined); // Content of code editor
   const [isYamlValid, setIsYamlValid] = useState(true); // Whether the code editor format is valid
 
   useEffect(() => {
-    fetch('/defaultSchema.yaml')
+    fetch('/exampleSchemas/files.yaml')
       .then(response => response.text())
       .then(yaml => {
-        setOriginalSchemaData(yaml);
         setSchemaData(yaml);
         setEditorContent(yaml); // Initialize editorContent with the fetched YAML
       })
@@ -56,7 +54,11 @@ export default function Home() {
           className="p-4"
         >
           <h1 className="text-gray-100 text-3xl font-bold">Schema Explorer</h1>
-          <h2 className="text-gray-400 text-xs">Edit, preview, and save your Descope ReBAC Schema.</h2>
+          <h2 className="text-gray-400 text-xs">Edit, preview, and save your Descope ReBAC Schema. Try different example schemas for <a href="/exampleSchemas/courses.yaml" target="_blank" className="underline">courses</a>, <a href="/exampleSchemas/inventory.yaml" target="_blank" className="underline">inventory</a> 
+          , <a href="/exampleSchemas/projects.yaml" target="_blank" className="underline">projects</a>
+          , and <a href="/exampleSchemas/eCommerce.yaml" target="_blank" className="underline">E-commerce</a>.
+          
+          </h2>
         </div>
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-1/2 p-4">
@@ -84,6 +86,22 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {/* <div className="w-full p-4">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h2 className="text-md text-gray-300 font-medium">Explanation</h2>
+                <p className="text-xs text-gray-400">Get an explanation of the schema you have saved.</p>
+              </div>
+              <div className="space-x-2 flex flex-row items-center">
+                <PrimaryButton onClick={() => {
+                  
+                }}>Generate</PrimaryButton>
+              </div>
+            </div>            
+            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden min-h-[200px]">
+              
+            </div>
+        </div> */}
       </div>
     </main>
   )

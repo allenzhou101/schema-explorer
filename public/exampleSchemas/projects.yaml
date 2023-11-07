@@ -1,0 +1,50 @@
+name: Projects
+namespaces:
+  - name: team
+    relationDefinitions:
+      - name: lead
+      - name: contributor
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationLeft
+                relationDefinition: lead
+                relationDefinitionNamespace: team
+                targetRelationDefinition: contributor
+                targetRelationDefinitionNamespace: team
+  - name: task
+    relationDefinitions:
+      - name: assignee
+      - name: reviewer
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationRight
+                relationDefinition: assignee
+                relationDefinitionNamespace: task
+                targetRelationDefinition: reviewer
+                targetRelationDefinitionNamespace: task
+      - name: reader
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationRight
+                relationDefinition: assignee
+                relationDefinitionNamespace: task
+                targetRelationDefinition: reader
+                targetRelationDefinitionNamespace: task

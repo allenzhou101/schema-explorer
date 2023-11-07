@@ -1,0 +1,36 @@
+name: Inventory
+namespaces:
+  - name: warehouse
+    relationDefinitions:
+      - name: manager
+      - name: staff
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationLeft
+                relationDefinition: manager
+                relationDefinitionNamespace: warehouse
+                targetRelationDefinition: staff
+                targetRelationDefinitionNamespace: warehouse
+  - name: item
+    relationDefinitions:
+      - name: owner
+      - name: supplier
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationLeft
+                relationDefinition: owner
+                relationDefinitionNamespace: item
+                targetRelationDefinition: supplier
+                targetRelationDefinitionNamespace: item

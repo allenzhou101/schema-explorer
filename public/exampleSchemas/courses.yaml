@@ -1,0 +1,36 @@
+name: Courses
+namespaces:
+  - name: department
+    relationDefinitions:
+      - name: head
+      - name: lecturer
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationLeft
+                relationDefinition: head
+                relationDefinitionNamespace: department
+                targetRelationDefinition: lecturer
+                targetRelationDefinitionNamespace: department
+  - name: module
+    relationDefinitions:
+      - name: coordinator
+      - name: assistant
+        complexDefinition:
+          nType: union
+          children:
+            - nType: child
+              expression:
+                neType: self
+            - nType: child
+              expression:
+                neType: relationLeft
+                relationDefinition: coordinator
+                relationDefinitionNamespace: module
+                targetRelationDefinition: assistant
+                targetRelationDefinitionNamespace: module
