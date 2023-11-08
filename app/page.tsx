@@ -71,11 +71,12 @@ export default function Home() {
                 <PrimaryModal
                   open={openModal}
                   setOpen={setOpenModal}
-                  title="Have Descope generate your schema"
+                  title="AI Generated Schema"
                   description="Tell us about your application structure and functionality, and we'll generate a ReBAC schema for you."
+                  confirmText='Generate'
+                  placeholderText='Describe your application here. What are the entities? What are the relationships between them?'
                   onConfirm={() => {
-                    setOpenModal(false)
-                  
+                    // setOpenModal(false)
                   }}
                 />
                 <VariantButton onClick={() => setOpenModal(true)}>Generate Schema</VariantButton>
