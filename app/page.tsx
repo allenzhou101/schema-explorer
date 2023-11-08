@@ -6,12 +6,15 @@ import CodeEditor from "../components/schema/codeEditor";
 import ForceGraph from "../components/preview/forceGraph";
 import CustomLoadingIndicator from '../components/customLoadingIndicator';
 import PrimaryButton from '../components/buttons/primaryButton';
+import VariantButton from '@/components/buttons/variantButton';
+import PrimaryModal from '@/components/modals/primaryModal';
 
 
 export default function Home() {
   const [schemaData, setSchemaData] = useState<string | undefined>(undefined); // Schema being previewed
   const [editorContent, setEditorContent] = useState<string | undefined>(undefined); // Content of code editor
   const [isYamlValid, setIsYamlValid] = useState(true); // Whether the code editor format is valid
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     fetch('/exampleSchemas/files.yaml')
@@ -65,6 +68,17 @@ export default function Home() {
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-md text-gray-500 dark:text-gray-300 font-medium">Schema</h2>
               <div className="space-x-2 flex flex-row items-center">
+                <PrimaryModal
+                  open={openModal}
+                  setOpen={setOpenModal}
+                  title="Have Descope generate your schema"
+                  description="Tell us about your application structure and functionality, and we'll generate a ReBAC schema for you."
+                  onConfirm={() => {
+                    setOpenModal(false)
+                  
+                  }}
+                />
+                <VariantButton onClick={() => setOpenModal(true)}>Generate Schema</VariantButton>
                 {/* {!isYamlValid && <p className="text-gray-400 text-[10px] italic">*You have YAML formatting errors. Fix them to save.*</p>} */}
                 <PrimaryButton onClick={handleSave} disabled={!isYamlValid}>Save</PrimaryButton>
               </div>
@@ -86,7 +100,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* <div className="w-full p-4">
+        <div className="w-full p-4">
             <div className="flex justify-between items-center mb-4">
               <div>
                 <h2 className="text-md text-gray-300 font-medium">Explanation</h2>
@@ -101,7 +115,7 @@ export default function Home() {
             <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden min-h-[200px]">
               
             </div>
-        </div> */}
+        </div>
       </div>
     </main>
   )
