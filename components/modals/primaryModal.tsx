@@ -16,6 +16,7 @@ export default function PrimaryModal({ open, setOpen, title, description, confir
 
   const cancelButtonRef = useRef(null)
 
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -62,7 +63,10 @@ export default function PrimaryModal({ open, setOpen, title, description, confir
                           rows={4}
                           name="prompt"
                           id="prompt"
-                          className="bg-[#121212] block w-full rounded-md border-0 py-1.5 pl-3 pr-20 text-gray-900 ring-1 ring-inset ring-[#494949] placeholder:text-xs placeholder:text-gray-500 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                          className="bg-[#1E1E1E] block w-full rounded-md
+                          focus:outline-none py-1.5 pl-3 pr-3 text-gray-200 
+                          placeholder:text-md placeholder:text-gray-500 
+                          text-xs leading-6 border border-[#494949]"
                           placeholder={placeholderText}
                         />
                       </div>

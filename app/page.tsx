@@ -71,15 +71,15 @@ export default function Home() {
                 <PrimaryModal
                   open={openModal}
                   setOpen={setOpenModal}
-                  title="AI Generated Schema"
-                  description="Tell us about your application structure and functionality, and we'll generate a ReBAC schema for you."
+                  title="Generate a schema using AI"
+                  description="Tell us about your application structure and functionality, and a ReBAC schema will be generated for you."
                   confirmText='Generate'
                   placeholderText='Describe your application here. What are the entities? What are the relationships between them?'
                   onConfirm={() => {
                     // setOpenModal(false)
                   }}
                 />
-                <VariantButton onClick={() => setOpenModal(true)}>Generate Schema</VariantButton>
+                <VariantButton onClick={() => setOpenModal(true)}>AI Generate</VariantButton>
                 {/* {!isYamlValid && <p className="text-gray-400 text-[10px] italic">*You have YAML formatting errors. Fix them to save.*</p>} */}
                 <PrimaryButton onClick={handleSave} disabled={!isYamlValid}>Save</PrimaryButton>
               </div>
@@ -101,7 +101,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full p-4">
+        {/* <div className="w-full p-4">
             <div className="flex justify-between items-center mb-4">
               <div>
                 <h2 className="text-md text-gray-300 font-medium">Explanation</h2>
@@ -116,7 +116,7 @@ export default function Home() {
             <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden min-h-[200px]">
               
             </div>
-        </div>
+        </div> */}
       </div>
     </main>
   )
