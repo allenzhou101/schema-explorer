@@ -6,49 +6,51 @@ import CodeEditor from "../components/schema/codeEditor";
 import ForceGraph from "../components/preview/forceGraph";
 import CustomLoadingIndicator from '../components/customLoadingIndicator';
 import PrimaryButton from '../components/buttons/primaryButton';
-import VariantButton from '@/components/buttons/variantButton';
 import PrimaryModal from '@/components/modals/primaryModal';
 import sectionHeight from '@/util/constants';
-import { Editor } from '@monaco-editor/react';
+import { Editor } from '@monaco-editor/react'
+import { useFetchData } from '@/util/hooks/useFetchData';
 
 export default function Home() {
-  const [schemaData, setSchemaData] = useState<string | undefined>(undefined); // Schema being previewed
   const [editorContent, setEditorContent] = useState<string | undefined>(undefined); // Content of code editor
   const [isYamlValid, setIsYamlValid] = useState(true); // Whether the code editor format is valid
   const [openModal, setOpenModal] = useState(false)
 
-  const [relations, setRelationsData] = useState<string | undefined>(undefined);
-  const [assertions, setAssertionsData] = useState<string | undefined>(undefined);
+
+  const endpoints = [
+    '/examples/files/relations.ts',
+    '/examples/files/assertions.ts',
+    '/examples/files/schema.yaml',
+  ];
+
+  const [fetchedData, fetchError] = useFetchData(endpoints);
+
+  const [schemaData, setSchemaData] = useState<string | undefined>(undefined); // Content of code editor
+  const [relations, setRelations] = useState<string | undefined>(undefined); // Content of code editor
+  const [assertions, setAssertions] = useState<string | undefined>(undefined); // Content of code editor
+
 
   useEffect(() => {
-    fetch('/examples/files/relations.ts')
-      .then(response => response.text())
-      .then(relations => {
-        setRelationsData(relations);
-      })
-      .catch(error => {
-        console.error('Error loading YAML data:', error);
-      });
+    // TODO: Clean up data fetching
+    if (fetchedData) {
+      // @ts-ignore
+      const tempSchema = fetchedData[endpoints[2]];
+      setSchemaData(tempSchema);
+      setEditorContent(tempSchema);
 
-      fetch('/examples/files/assertions.ts')
-      .then(response => response.text())
-      .then(assertions => {
-        setAssertionsData(assertions);
-      })
-      .catch(error => {
-        console.error('Error loading YAML data:', error);
-      });
+      // @ts-ignore
+      const tempRelations = fetchedData[endpoints[0]];
+      setRelations(tempRelations);
 
-      fetch('/exampleSchemas/files.yaml')
-      .then(response => response.text())
-      .then(yaml => {
-        setSchemaData(yaml);
-        setEditorContent(yaml); // Initialize editorContent with the fetched YAML
-      })
-      .catch(error => {
-        console.error('Error loading YAML data:', error);
-      });
-  },[]);
+      // @ts-ignore
+      const tempAssertions = fetchedData[endpoints[1]];
+      setAssertions(tempAssertions);
+    }
+  }, [fetchedData]);
+
+  if (fetchError) {
+    console.error('Error fetching data:', fetchError);
+  }
 
   const handleEditorChange = (content: string) => {
     setEditorContent(content); // Update editor content on change
@@ -72,7 +74,7 @@ export default function Home() {
 
   return (
     <main
-      className="flex min-h-screen flex-col items-center bg-[#121212] px-8 xl:px-24 py-8"
+      className="flex min-h-screen flex-col items-center bg-[#121212] px-4 xl:px-12 py-8"
     >
       <div className="max-w-screen-4xl w-full">
         <div
