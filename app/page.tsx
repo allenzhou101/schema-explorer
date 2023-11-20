@@ -80,7 +80,7 @@ export default function Home() {
         <div
           className="p-4"
         >
-          <h1 className="text-gray-100 text-3xl font-bold">Descope ReBAC Explorer</h1>
+          <h1 className="text-gray-100 text-3xl font-bold">Descope ReBAC Playground</h1>
           <h2 className="text-gray-400 text-xs">Edit, preview, and save your ReBAC Schema. Try different example schemas for <a href="/exampleSchemas/courses.yaml" target="_blank" className="underline">courses</a>, <a href="/exampleSchemas/inventory.yaml" target="_blank" className="underline">inventory</a> 
           , <a href="/exampleSchemas/projects.yaml" target="_blank" className="underline">projects</a>
           , and <a href="/exampleSchemas/eCommerce.yaml" target="_blank" className="underline">E-commerce</a>.
