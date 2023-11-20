@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import Editor from "@monaco-editor/react";
 import CustomLoadingIndicator from "../customLoadingIndicator";
+import sectionHeight from "@/util/constants";
 
 interface CodeEditorProps {
   editorContent: string | undefined;
@@ -19,7 +20,7 @@ function CodeEditor(props: CodeEditorProps) {
   return (
     <>
       <Editor
-        height="600px"
+        height={`${sectionHeight}px`}
         width="100%"
         defaultLanguage="yaml"
         defaultValue={editorContent}

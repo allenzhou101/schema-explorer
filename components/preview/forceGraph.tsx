@@ -7,6 +7,7 @@ import CustomLoadingIndicator from '../customLoadingIndicator';
 import Legend from './legend';
 import { parseYamlToNodes } from '@/services/yamlParsing';
 import { Link, Node } from '@/util/types';
+import sectionHeight from '@/util/constants';
 
 const ForceGraph2D = dynamic(() => import('react-force-graph').then((mod) => mod.ForceGraph2D), {
     ssr: false, 
@@ -72,7 +73,7 @@ function ForceGraph(props: ForceGraphProps) {
         <CustomLoadingIndicator />
     )
     if (nodes.nodes.length === 0) return (
-        <div className="flex h-[600px] items-center justify-center">
+        <div className={`flex h-[${sectionHeight}px] items-center justify-center`}>
             <p className="text-gray-500 text-xs">Your schema doesn&apos;t have any nodes.</p>
         </div>
     )
@@ -86,7 +87,7 @@ function ForceGraph(props: ForceGraphProps) {
             <ForceGraph2D
                 graphData={nodes}
                 width={width || 600}
-                height={height || 600}
+                height={height || sectionHeight}
                 backgroundColor="#1E1E1E"
                 linkColor={(link: any) => link.linkColor || '#F0F0F0'}
                 nodeCanvasObject={nodeCanvasObject}

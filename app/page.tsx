@@ -8,6 +8,7 @@ import CustomLoadingIndicator from '../components/customLoadingIndicator';
 import PrimaryButton from '../components/buttons/primaryButton';
 import VariantButton from '@/components/buttons/variantButton';
 import PrimaryModal from '@/components/modals/primaryModal';
+import sectionHeight from '@/util/constants';
 
 
 export default function Home() {
@@ -50,9 +51,9 @@ export default function Home() {
 
   return (
     <main
-      className="flex min-h-screen flex-col items-center bg-[#121212] px-8 lg:px-24 py-8"
+      className="flex min-h-screen flex-col items-center bg-[#121212] px-8 xl:px-24 py-8"
     >
-      <div className="max-w-screen-2xl w-full">
+      <div className="max-w-screen-4xl w-full">
         <div
           className="p-4"
         >
@@ -79,12 +80,12 @@ export default function Home() {
                     // setOpenModal(false)
                   }}
                 />
-                <VariantButton onClick={() => setOpenModal(true)}>AI Generate</VariantButton>
+                {/* <VariantButton onClick={() => setOpenModal(true)}>AI Generate</VariantButton> */}
                 {/* {!isYamlValid && <p className="text-gray-400 text-[10px] italic">*You have YAML formatting errors. Fix them to save.*</p>} */}
                 <PrimaryButton onClick={handleSave} disabled={!isYamlValid}>Save</PrimaryButton>
               </div>
             </div>
-            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[600px]">
+            <div className={`w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[${sectionHeight}px]`}>
               {schemaData === undefined ? (
                 <CustomLoadingIndicator/>
               ) : (
@@ -94,7 +95,7 @@ export default function Home() {
           </div>
           <div className="w-full md:w-1/2 p-4">
             <h2 className="text-md text-gray-500 dark:text-gray-300 mb-4 font-medium">Preview</h2>
-            <div className="w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[600px]">
+            <div className={`w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[${sectionHeight}px]`}>
               <ForceGraph
                 schema={schemaData}
               />
