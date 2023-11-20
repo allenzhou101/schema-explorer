@@ -49,28 +49,28 @@ export function parseYamlToNodes(yamlString: string): { nodes: Node[]; links: Li
           target: relationDefinitionNodeId
         });
 
-        if (relation.complexDefinition) {
-          if (relation.complexDefinition.nType === 'union') {
-              relation.complexDefinition.children.forEach((child: any, childIndex: number) => {
-                const neType = child.expression.neType;
-                if (neType === "self") {
+        // if (relation.complexDefinition) {
+        //   if (relation.complexDefinition.nType === 'union') {
+        //       relation.complexDefinition.children.forEach((child: any, childIndex: number) => {
+        //         const neType = child.expression.neType;
+        //         if (neType === "self") {
 
-                } else if (neType === "relationLeft") {
+        //         } else if (neType === "relationLeft") {
 
-                } else if (neType === "relationRight") {
+        //         } else if (neType === "relationRight") {
 
-                } else if (neType === "targetSet") {
-                  const targetRelationDefinition = child.expression.targetRelationDefinition;
-                  const targetRelationDefinitionNamespace = child.expression.targetRelationDefinitionNamespace;
-                  links.push({
-                    source: relationDefinitionNodeId,
-                    target: `${targetRelationDefinitionNamespace}#${targetRelationDefinition}`,
-                  });
-                }
+        //         } else if (neType === "targetSet") {
+        //           const targetRelationDefinition = child.expression.targetRelationDefinition;
+        //           const targetRelationDefinitionNamespace = child.expression.targetRelationDefinitionNamespace;
+        //           links.push({
+        //             source: relationDefinitionNodeId,
+        //             target: `${targetRelationDefinitionNamespace}#${targetRelationDefinition}`,
+        //           });
+        //         }
 
-              });
-          }
-        }
+        //       });
+        //   }
+        // }
       });
     });
   }

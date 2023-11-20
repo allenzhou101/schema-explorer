@@ -17,7 +17,7 @@ export default function Legend() {
             <div className="flex flex-col space-y-1">
                 <LegendItem label="Schema" shape="square" color="bg-[#66BB6A]" />
                 <LegendItem label="Namespace" shape="circle" color="bg-[#0085FF]" />
-                <LegendItem label="Entity" shape="circle" color="bg-[#A665EB]" />
+                <LegendItem label="Resource/Target/Target Set" shape="circle" color="bg-[#A665EB]" />
             </div>
         </div>
     );
