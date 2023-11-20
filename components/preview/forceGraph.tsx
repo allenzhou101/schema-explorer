@@ -68,8 +68,10 @@ function ForceGraph(props: ForceGraphProps) {
         ctx.fillStyle = 'white'; // Color for text
         ctx.fillText(label, node.x, node.y + fontSize + 5); // Position text below the shape
     };
-
-    if (nodes === undefined || (nodes.nodes.length === 0)) return (
+    if (nodes === undefined) return (
+        <CustomLoadingIndicator />
+    )
+    if (nodes.nodes.length === 0) return (
         <div className="flex h-[600px] items-center justify-center">
             <p className="text-gray-500 text-xs">Your schema doesn&apos;t have any nodes.</p>
         </div>
