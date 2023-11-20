@@ -23,30 +23,54 @@ export function parseYamlToNodes(yamlString: string): { nodes: Node[]; links: Li
 
     // For each namespace, create a node and link it to the parent schema
     yamlObject.namespaces?.forEach((namespace: any, index: number) => {
-      const namespaceNodeId = `namespace${index + 1}`;
+      const namespaceName = namespace.name;
       nodes.push({
-        id: namespaceNodeId,
-        name: namespace.name,
+        id: namespaceName,
+        name: namespaceName,
         type: 'namespace'
       });
 
       links.push({
-          source: namespaceNodeId,
+          source: namespaceName,
           target: 'schema'
       })
 
       // Create links for relation definitions if any
       namespace.relationDefinitions?.forEach((relation: any, relIndex: number) => {
-        const relationNodeId = `relation${namespaceNodeId}_${relIndex + 1}`;
+        // const relationNodeId = `relation${namespaceNodeId}_${relIndex + 1}`;
+        const relationDefinitionNodeId = `${namespaceName}#${relation.name}`;
         nodes.push({
-          id: relationNodeId,
+          id: relationDefinitionNodeId,
           name: relation.name,
           type: 'entity'
         });
         links.push({
-          source: namespaceNodeId,
-          target: relationNodeId
+          source: namespaceName,
+          target: relationDefinitionNodeId
         });
+
+        if (relation.complexDefinition) {
+          if (relation.complexDefinition.nType === 'union') {
+              relation.complexDefinition.children.forEach((child: any, childIndex: number) => {
+                const neType = child.expression.neType;
+                if (neType === "self") {
+
+                } else if (neType === "relationLeft") {
+
+                } else if (neType === "relationRight") {
+
+                } else if (neType === "targetSet") {
+                  const targetRelationDefinition = child.expression.targetRelationDefinition;
+                  const targetRelationDefinitionNamespace = child.expression.targetRelationDefinitionNamespace;
+                  links.push({
+                    source: relationDefinitionNodeId,
+                    target: `${targetRelationDefinitionNamespace}#${targetRelationDefinition}`,
+                  });
+                }
+
+              });
+          }
+        }
       });
     });
   }

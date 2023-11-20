@@ -23,7 +23,6 @@ const useFetchData = (endpoints: string[]) => {
         )
         )
         .then((results) => {
-        console.log(results)
         setData(results.reduce((acc, current) => ({ ...acc, ...current }), {}));
         })
         .catch((error) => {
