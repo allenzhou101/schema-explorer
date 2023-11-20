@@ -9,7 +9,7 @@ import PrimaryButton from '../components/buttons/primaryButton';
 import VariantButton from '@/components/buttons/variantButton';
 import PrimaryModal from '@/components/modals/primaryModal';
 import sectionHeight from '@/util/constants';
-
+import { Editor } from '@monaco-editor/react';
 
 export default function Home() {
   const [schemaData, setSchemaData] = useState<string | undefined>(undefined); // Schema being previewed
@@ -17,8 +17,29 @@ export default function Home() {
   const [isYamlValid, setIsYamlValid] = useState(true); // Whether the code editor format is valid
   const [openModal, setOpenModal] = useState(false)
 
+  const [relations, setRelationsData] = useState<string | undefined>(undefined);
+  const [assertions, setAssertionsData] = useState<string | undefined>(undefined);
+
   useEffect(() => {
-    fetch('/exampleSchemas/files.yaml')
+    fetch('/examples/files/relations.ts')
+      .then(response => response.text())
+      .then(relations => {
+        setRelationsData(relations);
+      })
+      .catch(error => {
+        console.error('Error loading YAML data:', error);
+      });
+
+      fetch('/examples/files/assertions.ts')
+      .then(response => response.text())
+      .then(assertions => {
+        setAssertionsData(assertions);
+      })
+      .catch(error => {
+        console.error('Error loading YAML data:', error);
+      });
+
+      fetch('/exampleSchemas/files.yaml')
       .then(response => response.text())
       .then(yaml => {
         setSchemaData(yaml);
@@ -118,6 +139,71 @@ export default function Home() {
               
             </div>
         </div> */}
+        
+      </div>
+      <div className="flex flex-col md:flex-row w-full">
+      <div className="w-full md:w-1/2 p-4">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h2 className="text-md text-gray-300 font-medium">Relations</h2>
+                <p className="text-xs text-gray-400">Relations define specific Relation Definitions between Targets and Resources.</p>
+              </div>
+              {/* <div className="space-x-2 flex flex-row items-center">
+                <PrimaryButton onClick={() => {
+                  
+                }}>Generate</PrimaryButton>
+              </div> */}
+            </div>            
+            <div className={`w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[${sectionHeight}px]`}>
+              <Editor
+                height={`${sectionHeight}px`}
+                width="100%"
+                defaultLanguage="typescript"
+                defaultValue={relations}
+                theme="vs-dark"
+                loading={<CustomLoadingIndicator />}
+                options={{
+                  cursorStyle: "line",
+                  formatOnPaste: true,
+                  formatOnType: true,
+                  minimap: { enabled: false },
+                  wordWrap: "on",
+                  scrollBeyondLastLine: false,
+                }}
+              />
+            </div>
+        </div>
+        <div className="w-full md:w-1/2 p-4">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <h2 className="text-md text-gray-300 font-medium">Assertions</h2>
+                <p className="text-xs text-gray-400">Check if Relation Definitions exist between Targets and Resources.</p>
+              </div>
+              {/* <div className="space-x-2 flex flex-row items-center">
+                <PrimaryButton onClick={() => {
+                  
+                }}>Generate</PrimaryButton>
+              </div> */}
+            </div>            
+            <div className={`w-full bg-[#1E1E1E] rounded-md border border-[#494949] overflow-hidden h-[${sectionHeight}px]`}>
+              <Editor
+                height={`${sectionHeight}px`}
+                width="100%"
+                defaultLanguage="typescript"
+                defaultValue={assertions}
+                theme="vs-dark"
+                loading={<CustomLoadingIndicator />}
+                options={{
+                  cursorStyle: "line",
+                  formatOnPaste: true,
+                  formatOnType: true,
+                  minimap: { enabled: false },
+                  wordWrap: "on",
+                  scrollBeyondLastLine: false,
+                }}
+              />
+            </div>
+        </div>
       </div>
     </main>
   )

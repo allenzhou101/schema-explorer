@@ -1,9 +1,9 @@
+// @ts-ignore
 import DescopeClient from '@descope/node-sdk';
-import { assert } from 'console';
 
 const descopeClient = DescopeClient({ projectId: '__ProjectID__', managementKey: '__ManagementKey__' });
-
 const authzService = descopeClient.management.authz;
+
 
 const checkRelations = async () => {
     const relationQueries: AuthzRelationQuery[] = [{
@@ -19,11 +19,14 @@ const checkRelations = async () => {
         target: 'u2'
       }];
       const resp = await authzService.hasRelations(relationQueries);
-      
-    //   assert(resp[0].hasRelation);
-    //   assert(resp[1].hasRelation);
+
+      resp.data?.forEach((relation: AuthzRelationQuery) => {
+        console.log(relation.hasRelation);
+      });
 }
 
+
+// Types
 
 type AuthzRelationQuery = {
     resource: string;

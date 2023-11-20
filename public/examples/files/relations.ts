@@ -1,8 +1,9 @@
+// @ts-ignore
 import DescopeClient from '@descope/node-sdk';
 
 const descopeClient = DescopeClient({ projectId: '__ProjectID__', managementKey: '__ManagementKey__' });
-
 const authzService = descopeClient.management.authz;
+
 
 const createRelations = async () => {
   const relations: AuthzRelation[] = [{
@@ -21,6 +22,8 @@ const createRelations = async () => {
   await authzService.createRelations(relations);
 }
 
+
+// Types
 
 type AuthzRelation = {
   resource: string;
